@@ -39,7 +39,7 @@ Everything runs **entirely in your browser**. No data leaves your machine.
 
 | File | Description |
 |------|-------------|
-| `bookmarklet.html` | **Open this** — drag the button to your bookmarks bar |
+| `index.html` | **Open this** — drag the button to your bookmarks bar |
 | `bookmarklet.min.js` | The bootloader bookmarklet (~180 bytes) |
 | `feedly-cleanup.js` | The full hosted script (v1.0.0) — auto-updated |
 
@@ -48,7 +48,7 @@ Everything runs **entirely in your browser**. No data leaves your machine.
 ```
 bookmarklet.min.js          feedly-cleanup.js
 ─────────────────          ─────────────────
-~180 bytes                   ~350 lines
+~180 bytes                   ~400 lines
 Never changes                Auto-updates daily
 Stored in your bookmarks     Hosted on GitHub
      │                            │
@@ -65,6 +65,8 @@ Stored in your bookmarks     Hosted on GitHub
 
 | Version | Date | Changes |
 |---------|------|---------|
+| **1.4.0** | 2026-07-06 | Auto refresh feed after. |
+| **1.3.0** | 2026-07-06 | Add a confirmation dialog listing count of items. |
 | **1.2.0** | 2026-07-06 | Removed re-run guard. Switched to GitHub Pages hosting. |
 | **1.1.0** | 2026-07-06 | Initial release |
 
