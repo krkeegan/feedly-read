@@ -16,7 +16,7 @@
   "use strict";
 
   // ── Version ────────────────────────────────────────────────────────────
-  var VERSION = "1.2.0";
+  var VERSION = "1.3.0";
 
   // ── Configuration ──────────────────────────────────────────────────────
   var API_BASE = "https://api.feedly.com/v3";
@@ -191,6 +191,47 @@
     });
   }
 
+  function showConfirmDialog(count, cutoffDate, folderLabel) {
+    return new Promise(function (resolve) {
+      var old = document.getElementById("feedly-cleanup-dialog");
+      if (old) old.remove();
+
+      var html =
+        '<div id="feedly-cleanup-overlay" style="position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.45);z-index:2147483647;display:flex;align-items:center;justify-content:center;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;">' +
+        '<div style="background:#fff;border-radius:14px;padding:28px 32px;max-width:430px;width:90%;box-shadow:0 16px 48px rgba(0,0,0,0.25);">' +
+        '<h2 style="margin:0 0 6px;font-size:20px;color:#111;">🧹 Feedly Cleanup</h2>' +
+        '<p style="margin:0 0 6px;font-size:12px;color:#888;">v' + VERSION + '</p>' +
+        '<div style="padding:16px;background:#f0fdf4;border-radius:8px;margin-bottom:20px;font-size:14px;color:#166534;line-height:1.7;">' +
+        'Found <strong>' + count + '</strong> article(s) older than <strong>' + cutoffDate + '</strong> in "<strong>' + folderLabel + '</strong>".<br><br>' +
+        'Mark them as read?' +
+        "</div>" +
+        '<div style="display:flex;gap:10px;justify-content:flex-end;">' +
+        '<button id="feedly-cleanup-cancel" style="padding:9px 20px;border:1px solid #d1d5db;border-radius:7px;background:#fff;font-size:14px;cursor:pointer;color:#333;">Cancel</button>' +
+        '<button id="feedly-cleanup-confirm" style="padding:9px 20px;border:none;border-radius:7px;background:#16a34a;color:#fff;font-size:14px;font-weight:600;cursor:pointer;">Confirm</button>' +
+        "</div>" +
+        "</div>" +
+        "</div>";
+
+      document.body.insertAdjacentHTML("beforeend", html);
+
+      var overlay = document.getElementById("feedly-cleanup-overlay");
+
+      document.getElementById("feedly-cleanup-cancel").onclick = function () {
+        overlay.remove();
+        resolve(false);
+      };
+
+      document.getElementById("feedly-cleanup-confirm").onclick = function () {
+        overlay.remove();
+        resolve(true);
+      };
+
+      overlay.addEventListener("click", function (e) {
+        if (e.target === overlay) { overlay.remove(); resolve(false); }
+      });
+    });
+  }
+
   function showResult(overlay, title, message, isError) {
     var content = overlay.querySelector("div > div");
     var bg = isError ? "#fef2f2" : "#f0fdf4";
@@ -339,11 +380,17 @@
             return;
           }
 
-          updateProgress(progressEl, "📝 Marking " + oldArticles.length + " articles as read...");
+          showConfirmDialog(oldArticles.length, cutoffDate, folderLabel).then(function (confirmed) {
+            if (!confirmed) {
+              overlay.remove();
+              return;
+            }
 
-          var entryIds = oldArticles.map(function (a) { return a.id; });
+            updateProgress(progressEl, "📝 Marking " + oldArticles.length + " articles as read...");
 
-          markAsRead(entryIds, progressEl).then(function (marked) {
+            var entryIds = oldArticles.map(function (a) { return a.id; });
+
+            markAsRead(entryIds, progressEl).then(function (marked) {
             // Find oldest article for display
             var oldestTs = Infinity;
             var oldestTitle = "";
