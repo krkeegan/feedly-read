@@ -16,7 +16,7 @@
   "use strict";
 
   // ── Version ────────────────────────────────────────────────────────────
-  var VERSION = "1.3.0";
+  var VERSION = "1.3.1";
 
   // ── Configuration ──────────────────────────────────────────────────────
   var API_BASE = "https://api.feedly.com/v3";
@@ -380,24 +380,25 @@
             var entryIds = oldArticles.map(function (a) { return a.id; });
 
             markAsRead(entryIds, progressEl).then(function (marked) {
-            // Find oldest article for display
-            var oldestTs = Infinity;
-            var oldestTitle = "";
-            for (var i = 0; i < oldArticles.length; i++) {
-              var ts = oldArticles[i].published || oldArticles[i].crawled || 0;
-              if (ts < oldestTs) { oldestTs = ts; oldestTitle = oldArticles[i].title || ""; }
-            }
+              // Find oldest article for display
+              var oldestTs = Infinity;
+              var oldestTitle = "";
+              for (var i = 0; i < oldArticles.length; i++) {
+                var ts = oldArticles[i].published || oldArticles[i].crawled || 0;
+                if (ts < oldestTs) { oldestTs = ts; oldestTitle = oldArticles[i].title || ""; }
+              }
 
-            showResult(
-              overlay,
-              "Done! 🎉",
-              'Marked <strong>' + marked + " of " + oldArticles.length + '</strong> articles as read in "<strong>' + folderLabel + '</strong>".<br><br>' +
+              showResult(
+                overlay,
+                "Done! 🎉",
+                'Marked <strong>' + marked + " of " + oldArticles.length + '</strong> articles as read in "<strong>' + folderLabel + '</strong>".<br><br>' +
                 "Cutoff: <strong>" + cutoffDate + "</strong> (" + days + " day(s) ago)<br>" +
                 "Oldest marked: <strong>" + fmtDate(oldestTs) + "</strong> — " + (oldestTitle.length > 60 ? oldestTitle.slice(0, 57) + "..." : oldestTitle),
-              marked < oldArticles.length
-            );
-          }).catch(function (e) {
-            showResult(overlay, "Error", e.message, true);
+                marked < oldArticles.length
+              );
+            }).catch(function (e) {
+              showResult(overlay, "Error", e.message, true);
+            });
           });
         }).catch(function (e) {
           showResult(overlay, "Error", e.message, true);
