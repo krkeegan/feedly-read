@@ -137,9 +137,6 @@
       }
 
       cancelBtn.onclick = close;
-      overlay.addEventListener("click", function (e) {
-        if (e.target === overlay) close();
-      });
 
       startBtn.onclick = function () {
         var days = parseInt(daysInput.value, 10);
@@ -184,10 +181,6 @@
       document.getElementById("feedly-cleanup-close").onclick = function () {
         overlay.remove();
       };
-
-      overlay.addEventListener("click", function (e) {
-        if (e.target === overlay) overlay.remove();
-      });
     });
   }
 
@@ -225,10 +218,6 @@
         overlay.remove();
         resolve(true);
       };
-
-      overlay.addEventListener("click", function (e) {
-        if (e.target === overlay) { overlay.remove(); resolve(false); }
-      });
     });
   }
 
