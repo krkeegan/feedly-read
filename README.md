@@ -6,7 +6,7 @@ Works with **any Feedly account** (Free, Pro, Pro+, Enterprise). No API tokens, 
 
 ## Quick Start (30 seconds)
 
-1. **Open** [`bookmarklet.html`](bookmarklet.html) in your browser
+1. **Open** [`index.html`](https://krkeegan.github.io/feedly-read/) in your browser
 2. **Drag** the green "Feedly Cleanup" button to your bookmarks bar
 3. **Go to** [feedly.com](https://feedly.com) and log in
 4. **Click** the bookmark — a dialog appears auto-detecting your folder. Pick days, click **Start Cleanup**

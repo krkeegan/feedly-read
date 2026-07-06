@@ -9,7 +9,7 @@
  * Works with ANY Feedly account (Free, Pro, Pro+, Enterprise).
  * Uses your existing login session — no API tokens needed.
  * 
- * Hosted at: https://raw.githubusercontent.com/krkeegan/feedly-read/main/feedly-cleanup.js
+ * Hosted at: https://krkeegan.github.io/feedly-read/feedly-cleanup.js
  */
 
 (function () {
