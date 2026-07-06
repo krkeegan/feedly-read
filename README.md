@@ -16,21 +16,21 @@ Works with **any Feedly account** (Free, Pro, Pro+, Enterprise). No API tokens, 
 ## How It Works
 
 ```
-┌──────────────────────────────────────────────────┐
+┌───────────────────────────────────────────────────┐
 │  1. Bookmark loads bootloader (~180 bytes)        │
-├──────────────────────────────────────────────────┤
+├───────────────────────────────────────────────────┤
 │  2. Bootloader fetches full script from GitHub    │
 │     (cache-busted daily for auto-updates)         │
-├──────────────────────────────────────────────────┤
+├───────────────────────────────────────────────────┤
 │  3. Script reads your session token from          │
 │     localStorage (same as the Feedly app)         │
-├──────────────────────────────────────────────────┤
+├───────────────────────────────────────────────────┤
 │  4. Shows a styled dialog with folder auto-detect │
-├──────────────────────────────────────────────────┤
+├───────────────────────────────────────────────────┤
 │  5. Streams unread articles, filters by date      │
-├──────────────────────────────────────────────────┤
+├───────────────────────────────────────────────────┤
 │  6. Marks old ones as read in batches             │
-└──────────────────────────────────────────────────┘
+└───────────────────────────────────────────────────┘
 ```
 
 Everything runs **entirely in your browser**. No data leaves your machine.
