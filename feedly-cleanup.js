@@ -2,13 +2,13 @@
  * Feedly Cleanup — Full Script (v1.1.0)
  * ======================================
  * Marks articles older than N days as read in your CURRENT Feedly folder.
- * 
+ *
  * This is the full hosted script, fetched by the bookmarklet bootloader.
  * Because it's hosted, it can be arbitrarily large and auto-updates.
- * 
+ *
  * Works with ANY Feedly account (Free, Pro, Pro+, Enterprise).
  * Uses your existing login session — no API tokens needed.
- * 
+ *
  * Hosted at: https://krkeegan.github.io/feedly-read/feedly-cleanup.js
  */
 
@@ -166,10 +166,10 @@
         '<div id="feedly-cleanup-overlay" style="position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.45);z-index:2147483647;display:flex;align-items:center;justify-content:center;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;">' +
         '<div style="background:#fff;border-radius:14px;padding:28px 32px;max-width:430px;width:90%;box-shadow:0 16px 48px rgba(0,0,0,0.25);">' +
         '<h2 style="margin:0 0 6px;font-size:20px;color:#111;">🧹 Feedly Cleanup</h2>' +
-        '<p style="margin:0 0 6px;font-size:12px;color:#888;">v' + VERSION + ' &middot; auto-updating</p>' +
+        '<p style="margin:0 0 6px;font-size:12px;color:#888;">v' + VERSION + '</p>' +
         '<div style="padding:16px;background:#fef2f2;border-radius:8px;margin-bottom:20px;font-size:14px;color:#991b1b;line-height:1.6;">' +
         '<strong>No folder detected.</strong><br><br>' +
-        'Please navigate to a Feedly category/folder first (like your News or Tech feed), then click the bookmark again.' +
+        'Please navigate to a Feedly category/folder first, then click the bookmark again.' +
         "</div>" +
         '<div style="display:flex;gap:10px;justify-content:flex-end;">' +
         '<button id="feedly-cleanup-close" style="padding:9px 20px;border:none;border-radius:7px;background:#16a34a;color:#fff;font-size:14px;font-weight:600;cursor:pointer;">Go to Feedly</button>' +
@@ -183,7 +183,6 @@
 
       document.getElementById("feedly-cleanup-close").onclick = function () {
         overlay.remove();
-        window.open("https://feedly.com");
       };
 
       overlay.addEventListener("click", function (e) {
