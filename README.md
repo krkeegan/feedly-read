@@ -1,6 +1,6 @@
 # 🧹 Feedly Cleanup Bookmarklet
 
-Mark articles older than N days as read in your Feedly folders — with **one click**.
+Mark articles older than N days as read in your Feedly folders.
 
 Works with **any Feedly account** (Free, Pro, Pro+, Enterprise). No API tokens, no paid plan, no setup.
 
