@@ -65,6 +65,7 @@ Stored in your bookmarks     Hosted on GitHub
 
 | Version | Date | Changes |
 |---------|------|---------|
+| **1.2.0** | 2026-07-06 | Removed re-run guard. Switched to GitHub Pages hosting. |
 | **1.1.0** | 2026-07-06 | Initial release |
 
 ## FAQ
