@@ -16,7 +16,7 @@
   "use strict";
 
   // ── Version ────────────────────────────────────────────────────────────
-  var VERSION = "1.4.1";
+  var VERSION = "1.4.2";
 
   // ── Configuration ──────────────────────────────────────────────────────
   var API_BASE = "https://api.feedly.com/v3";
@@ -397,8 +397,7 @@
                 overlay,
                 "Done! 🎉",
                 'Marked <strong>' + marked + " of " + oldArticles.length + '</strong> articles as read in "<strong>' + folderLabel + '</strong>".<br><br>' +
-                "Cutoff: <strong>" + cutoffDate + "</strong> (" + days + " day(s) ago)<br>" +
-                "Oldest marked: <strong>" + fmtDate(oldestTs) + "</strong> — " + (oldestTitle.length > 60 ? oldestTitle.slice(0, 57) + "..." : oldestTitle),
+                "Cutoff: <strong>" + cutoffDate + "</strong> (" + days + " day(s) ago)<br>",
                 marked < oldArticles.length
               );
             }).catch(function (e) {
