@@ -107,7 +107,7 @@
         '<div id="feedly-cleanup-overlay" style="position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.45);z-index:2147483647;display:flex;align-items:center;justify-content:center;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;">' +
         '<div style="background:#fff;border-radius:14px;padding:28px 32px;max-width:430px;width:90%;box-shadow:0 16px 48px rgba(0,0,0,0.25);">' +
         '<h2 style="margin:0 0 6px;font-size:20px;color:#111;">🧹 Feedly Cleanup</h2>' +
-        '<p style="margin:0 0 6px;font-size:12px;color:#888;">v' + VERSION + ' &middot; auto-updating</p>' +
+        '<p style="margin:0 0 6px;font-size:12px;color:#888;">v' + VERSION + '</p>' +
         '<p style="margin:0 0 16px;padding:10px 12px;background:#f0fdf4;border-radius:7px;font-size:14px;color:#166534;">' +
         'Folder: <strong>' + folderLabel + '</strong></p>' +
         '<label style="display:block;font-size:13px;font-weight:600;color:#333;margin-bottom:4px;">Mark articles older than</label>' +
