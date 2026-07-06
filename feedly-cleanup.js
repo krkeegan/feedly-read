@@ -16,7 +16,7 @@
   "use strict";
 
   // ── Version ────────────────────────────────────────────────────────────
-  var VERSION = "1.4.0";
+  var VERSION = "1.4.1";
 
   // ── Configuration ──────────────────────────────────────────────────────
   var API_BASE = "https://api.feedly.com/v3";
@@ -184,7 +184,7 @@
     });
   }
 
-  function showConfirmDialog(count, cutoffDate, folderLabel) {
+  function showConfirmDialog(count, cutoffDate, folderLabel, mainOverlay) {
     return new Promise(function (resolve) {
       var old = document.getElementById("feedly-cleanup-dialog");
       if (old) old.remove();
@@ -211,6 +211,7 @@
 
       document.getElementById("feedly-cleanup-confirm-cancel").onclick = function () {
         confirmOverlay.remove();
+        if (mainOverlay) { mainOverlay.remove(); }
         resolve(false);
       };
 
@@ -369,7 +370,7 @@
             return;
           }
 
-          showConfirmDialog(oldArticles.length, cutoffDate, folderLabel).then(function (confirmed) {
+          showConfirmDialog(oldArticles.length, cutoffDate, folderLabel, overlay).then(function (confirmed) {
             if (!confirmed) {
               return;
             }
