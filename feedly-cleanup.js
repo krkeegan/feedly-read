@@ -374,10 +374,6 @@
 
   // ── Entry Point ────────────────────────────────────────────────────────
 
-  // Avoid double-execution if the bootloader injects us twice
-  if (window.__feedlyCleanupLoaded) return;
-  window.__feedlyCleanupLoaded = true;
-
   console.log("Feedly Cleanup v" + VERSION + " loaded");
   main();
 })();
