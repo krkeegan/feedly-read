@@ -172,7 +172,7 @@
         'Please navigate to a Feedly category/folder first, then click the bookmark again.' +
         "</div>" +
         '<div style="display:flex;gap:10px;justify-content:flex-end;">' +
-        '<button id="feedly-cleanup-close" style="padding:9px 20px;border:none;border-radius:7px;background:#16a34a;color:#fff;font-size:14px;font-weight:600;cursor:pointer;">Go to Feedly</button>' +
+        '<button id="feedly-cleanup-close" style="padding:9px 20px;border:none;border-radius:7px;background:#16a34a;color:#fff;font-size:14px;font-weight:600;cursor:pointer;">Close</button>' +
         "</div>" +
         "</div>" +
         "</div>";
