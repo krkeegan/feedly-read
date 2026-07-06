@@ -1,5 +1,5 @@
 /**
- * Feedly Cleanup — Full Script (v1.1.0)
+ * Feedly Cleanup — Full Script
  * ======================================
  * Marks articles older than N days as read in your CURRENT Feedly folder.
  *
@@ -16,7 +16,7 @@
   "use strict";
 
   // ── Version ────────────────────────────────────────────────────────────
-  var VERSION = "1.3.1";
+  var VERSION = "1.4.0";
 
   // ── Configuration ──────────────────────────────────────────────────────
   var API_BASE = "https://api.feedly.com/v3";
@@ -190,7 +190,7 @@
       if (old) old.remove();
 
       var html =
-        '<div id="feedly-cleanup-overlay" style="position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.45);z-index:2147483647;display:flex;align-items:center;justify-content:center;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;">' +
+        '<div id="feedly-cleanup-confirm-overlay" style="position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.45);z-index:2147483647;display:flex;align-items:center;justify-content:center;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif;">' +
         '<div style="background:#fff;border-radius:14px;padding:28px 32px;max-width:430px;width:90%;box-shadow:0 16px 48px rgba(0,0,0,0.25);">' +
         '<h2 style="margin:0 0 6px;font-size:20px;color:#111;">🧹 Feedly Cleanup</h2>' +
         '<p style="margin:0 0 6px;font-size:12px;color:#888;">v' + VERSION + '</p>' +
@@ -199,23 +199,23 @@
         'Mark them as read?' +
         "</div>" +
         '<div style="display:flex;gap:10px;justify-content:flex-end;">' +
-        '<button id="feedly-cleanup-cancel" style="padding:9px 20px;border:1px solid #d1d5db;border-radius:7px;background:#fff;font-size:14px;cursor:pointer;color:#333;">Cancel</button>' +
-        '<button id="feedly-cleanup-confirm" style="padding:9px 20px;border:none;border-radius:7px;background:#16a34a;color:#fff;font-size:14px;font-weight:600;cursor:pointer;">Confirm</button>' +
+        '<button id="feedly-cleanup-confirm-cancel" style="padding:9px 20px;border:1px solid #d1d5db;border-radius:7px;background:#fff;font-size:14px;cursor:pointer;color:#333;">Cancel</button>' +
+        '<button id="feedly-cleanup-confirm-ok" style="padding:9px 20px;border:none;border-radius:7px;background:#16a34a;color:#fff;font-size:14px;font-weight:600;cursor:pointer;">Confirm</button>' +
         "</div>" +
         "</div>" +
         "</div>";
 
       document.body.insertAdjacentHTML("beforeend", html);
 
-      var overlay = document.getElementById("feedly-cleanup-overlay");
+      var confirmOverlay = document.getElementById("feedly-cleanup-confirm-overlay");
 
-      document.getElementById("feedly-cleanup-cancel").onclick = function () {
-        overlay.remove();
+      document.getElementById("feedly-cleanup-confirm-cancel").onclick = function () {
+        confirmOverlay.remove();
         resolve(false);
       };
 
-      document.getElementById("feedly-cleanup-confirm").onclick = function () {
-        overlay.remove();
+      document.getElementById("feedly-cleanup-confirm-ok").onclick = function () {
+        confirmOverlay.remove();
         resolve(true);
       };
     });
@@ -371,7 +371,6 @@
 
           showConfirmDialog(oldArticles.length, cutoffDate, folderLabel).then(function (confirmed) {
             if (!confirmed) {
-              overlay.remove();
               return;
             }
 
@@ -387,6 +386,11 @@
                 var ts = oldArticles[i].published || oldArticles[i].crawled || 0;
                 if (ts < oldestTs) { oldestTs = ts; oldestTitle = oldArticles[i].title || ""; }
               }
+
+              // Trigger Feedly's built-in refresh button (identified by unique SVG path)
+              // not an ideal way to find it, but it doesn't seem to change
+              var refreshBtn = document.querySelector('path[d^="M13.438 3.865"]');
+              if (refreshBtn) { refreshBtn.closest('button').click(); }
 
               showResult(
                 overlay,
